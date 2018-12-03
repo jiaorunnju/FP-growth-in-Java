@@ -12,7 +12,7 @@ public class FpTree {
      */
 
     //table used in FP-Tree
-    private ArrayList<TableEntry> table;
+    public ArrayList<TableEntry> table;
     //maps a key to num it appears, easy to look up
     private HashMap<String, Integer> keyToNum;
     //maps a key to idx in table, easy to look up
@@ -24,8 +24,28 @@ public class FpTree {
     private Iterator<String> second;
     //the support number to discard unusual items
     private int support;
+
+    public int getSupport() {
+        return support;
+    }
+
     //the symbol to split records to get items
     private final String SPLIT = ",";
+    //the symbol represent the root node
+    private final String ROOT = "ROOT";
+
+    class Tuple{
+        /**
+         * a simple helper class
+         */
+        public String item;
+        public int num;
+
+        public Tuple(String key, int num){
+            this.item = key;
+            this.num = num;
+        }
+    }
 
     public FpTree(Iterator<String> it1, Iterator<String> it2, int support){
         this.first = it1;
@@ -34,7 +54,7 @@ public class FpTree {
         this.support = support;
         this.keyToNum = new HashMap<>();
         this.keyToIdx = new HashMap<>();
-        this.root = new TreeNode("ROOT");
+        this.root = new TreeNode(this.ROOT);
     }
 
     void buildTable(){
@@ -125,18 +145,5 @@ public class FpTree {
             System.out.println();
         }
         */
-    }
-}
-
-class Tuple{
-    /**
-     * a simple helper class
-     */
-    public String item;
-    public int num;
-
-    public Tuple(String key, int num){
-        this.item = key;
-        this.num = num;
     }
 }

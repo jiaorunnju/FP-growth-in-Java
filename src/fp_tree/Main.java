@@ -16,8 +16,7 @@ public class Main {
         data.add("a,b,d");
         data.add("b,c,e");
 
-        FpTree tree = new FpTree(data.iterator(), data.iterator(), 3);
-        tree.buildTable();
-        tree.buildTree();
+        FpGrowth algo = new FpGrowth(data.iterator(), data.iterator(), 3);
+        algo.getFrequentItemSet();
     }
 }

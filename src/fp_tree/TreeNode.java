@@ -3,7 +3,7 @@ package fp_tree;
 import java.util.*;
 
 
-public class TreeNode {
+class TreeNode {
     /**
      * This class represents the node in the FP-tree. It contains
      * item, num and maintains a pointer to its father, also a set
@@ -36,6 +36,10 @@ public class TreeNode {
         this.father = father;
     }
 
+    public boolean isRoot(){
+        return this.item.equals("ROOT");
+    }
+
     /**
      * check whether contains a child
      * @param key
@@ -61,6 +65,7 @@ public class TreeNode {
      */
     public TreeNode addChild(String key){
         TreeNode node = new TreeNode(key);
+        node.setFather(this);
         this.child.put(key, node);
         return node;
     }
